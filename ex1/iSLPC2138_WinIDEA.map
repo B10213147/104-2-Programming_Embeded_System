@@ -1,0 +1,171 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+code             0x00000000         0x0007d000         xr
+data             0x40000040         0x00007fc0         rw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\crt0.o
+LOAD E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\startup.o
+LOAD E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\main.o
+LOAD E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\gpio.o
+
+.text           0x00000000      0x218
+ *crt0.o(.text)
+ .text          0x00000000      0x218 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\crt0.o
+                0x00000218                . = ALIGN (0x4)
+
+.rodata
+ *(.rodata)
+                0x00000218                . = ALIGN (0x4)
+                0x00000218                _etext = .
+                0x00000218                PROVIDE (etext, .)
+                0x00000218                _codesrc = .
+
+.code           0x40000040      0x3cc load address 0x00000218
+                0x40000040                _code = .
+ *interrupts.o(.text)
+ *(.text)
+ .text          0x40000040       0x34 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\startup.o
+                0x40000040                startup
+ .text          0x40000074       0xa0 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\main.o
+                0x40000074                main
+ .text          0x40000114      0x2f8 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\gpio.o
+                0x40000174                get_pin_value
+                0x400001c4                set_pin_direction
+                0x40000114                set_pin_value
+ *(.glue_7t)
+ *(.glue_7)
+                0x4000040c                . = ALIGN (0x4)
+                0x4000040c                _ecode = .
+                0x000005e4                _datasrc = (_etext + SIZEOF (.code))
+
+.data           0x4000040c        0x0 load address 0x000005e4
+                0x4000040c                _data = .
+ *(.data)
+                0x4000040c                . = ALIGN (0x4)
+                0x4000040c                _edata = .
+                0x4000040c                PROVIDE (edata, .)
+
+.bss            0x4000040c        0x0
+                0x4000040c                _bss = .
+ *(.bss)
+ *(COMMON)
+                0x4000040c                . = ALIGN (0x4)
+                0x4000040c                _ebss = .
+                0x4000040c                _end = .
+                0x4000040c                PROVIDE (end, .)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x36
+ *(.comment)
+ .comment       0x00000000       0x12 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\startup.o
+ .comment       0x00000012       0x12 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\main.o
+ .comment       0x00000024       0x12 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\gpio.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0x80
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\crt0.o
+ .debug_aranges
+                0x00000020       0x20 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\startup.o
+ .debug_aranges
+                0x00000040       0x20 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\main.o
+ .debug_aranges
+                0x00000060       0x20 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\gpio.o
+
+.debug_pubnames
+                0x00000000       0x85
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0x1e E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\startup.o
+ .debug_pubnames
+                0x0000001e       0x1b E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\main.o
+ .debug_pubnames
+                0x00000039       0x4c E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\gpio.o
+
+.debug_info     0x00000000      0x510
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000       0xec E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\crt0.o
+ .debug_info    0x000000ec      0x134 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\startup.o
+ .debug_info    0x00000220      0x108 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\main.o
+ .debug_info    0x00000328      0x1e8 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\gpio.o
+
+.debug_abbrev   0x00000000      0x11e
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0x14 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\crt0.o
+ .debug_abbrev  0x00000014       0x45 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\startup.o
+ .debug_abbrev  0x00000059       0x34 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\main.o
+ .debug_abbrev  0x0000008d       0x91 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\gpio.o
+
+.debug_line     0x00000000      0x2d8
+ *(.debug_line)
+ .debug_line    0x00000000       0xf0 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\crt0.o
+ .debug_line    0x000000f0       0x97 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\startup.o
+ .debug_line    0x00000187       0x96 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\main.o
+ .debug_line    0x0000021d       0xbb E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\gpio.o
+
+.debug_frame    0x00000000       0xd0
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x30 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\startup.o
+ .debug_frame   0x00000030       0x30 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\main.o
+ .debug_frame   0x00000060       0x70 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\gpio.o
+
+.debug_str      0x00000000        0x9
+ *(.debug_str)
+ .debug_str     0x00000000        0x9 E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\gpio.o
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+LOAD /cygdrive/c/winIDEA/2007/gcc/arm/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libm.a
+LOAD /cygdrive/c/winIDEA/2007/gcc/arm/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a
+LOAD /cygdrive/c/winIDEA/2007/gcc/arm/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libc.a
+LOAD /cygdrive/c/winIDEA/2007/gcc/arm/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a
+OUTPUT(rezultat.elf elf32-littlearm)
