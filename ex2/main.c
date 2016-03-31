@@ -15,58 +15,56 @@ const long fvpb = 3000000;
 int main()
 {
   long nH,nL,next;
-  int pin_status = 0;
+  int pin_state = 0;
+  int key_state, key_last_state = 0;
 
-  nH = duty * fvpb / frequency;
+  set_pin_value(4, pin_state);
   nL = (1-duty) * fvpb / frequency;
-  set_pin_value(4, pin_status);
   next = T1TC + nL;
 
   while(1){
-    if((get_pin_value(12)==0)||(get_pin_value(13)==0)||
-       (get_pin_value(14)==0)||(get_pin_value(15)==0)){
-      //frequency increase 1Hz
-      if(get_pin_value(12)==0){
-        frequency += 1;
-        if(frequency>10)
-        {frequency=10;}
-      }
-      //frequency decrease 1Hz
-      if(get_pin_value(13)==0){
-        frequency -= 1;
-        if(frequency<1)
-        {frequency=1;}
-      }
-      //duty cycle increase 0.1
-      if(get_pin_value(14)==0){
-        duty += 0.1;
-        if(duty>1)
-        {duty = 1;}
-      }
-      //duty cycle decrease 0.1
-      if(get_pin_value(15)==0){
-        duty -= 0.1;
-        if(duty<0)
-        {duty = 0;}
-      }
-      //wait all the switches release
-      while((get_pin_value(12)!=1)||(get_pin_value(13)!=1)||
-            (get_pin_value(14)!=1)||(get_pin_value(15)!=1));
-      //reflash nH & nL
-      nH = duty * fvpb / frequency;
-      nL = (1-duty) * fvpb / frequency;
+    key_state = get_keys();
+
+    //frequency increase 1Hz
+    if(((key_state & T0) != 0) && ((key_last_state & T0) == 0)){
+      frequency += 1;
+      if(frequency>10)
+      {frequency = 10;}
     }
+    //frequency decrease 1Hz
+    if(((key_state & T1) != 0) && ((key_last_state & T1) == 0)){
+      frequency -= 1;
+      if(frequency<1)
+      {frequency = 1;}
+    }
+    //duty cycle increase 0.1
+    if(((key_state & T2) != 0) && ((key_last_state & T2) == 0)){
+      duty += 0.07;
+      if(duty>1)
+      {duty = 0.99;}
+    }
+    //duty cycle decrease 0.1
+    if(((key_state & T3) != 0) && ((key_last_state & T3) == 0)){
+      duty -= 0.07;
+      if(duty<0)
+      {duty = 0.01;}
+    }
+    //reflash nH & nL
+    nH = duty * fvpb / frequency;
+    nL = (1-duty) * fvpb / frequency;
+
+    key_last_state = key_state;
 
     if((T1TC - next)>0){
-      if(pin_status == 0){
+      if(pin_state == 0){
         next += nH;
-        pin_status = 1;
+        pin_state = 1;
       }
       else{
         next += nL;
-        pin_status = 0;
+        pin_state = 0;
       }
-      set_pin_value(4, pin_status);
+      set_pin_value(4, pin_state);
     }
   }
 	return 0;
