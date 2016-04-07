@@ -28,12 +28,12 @@ void set_pin_direction(int input, int output){
   }
 }
 
-void set_pin_value(int input, int output){
+void set_pin_value(int input, int value){
    int pin_mask;
 
    pin_mask =1<<input;
 
-   if(output == 1){
+   if(value == 1){
      IO0SET |= pin_mask;
    }
    else{
@@ -54,16 +54,12 @@ int startup(){
      Put initialization code here
   */
   int i;
+  int input_pin = P0_4 | P0_5 | P0_6 | P0_7;
+  int output_pin = P0_12 | P0_13 | P0_14 | P0_15;
     //pin[4:7] are LEDs
-  set_pin_direction(4,1);
-  set_pin_direction(5,1);
-  set_pin_direction(6,1);
-  set_pin_direction(7,1);
+  set_pin_direction(input_pin,1);
     //pin[12:15] are switches
-  set_pin_direction(12,0);
-  set_pin_direction(13,0);
-  set_pin_direction(14,0);
-  set_pin_direction(15,0);
+  set_pin_direction(output_pin,0);
 
   IO0CLR |= 0x000000F0;
 
