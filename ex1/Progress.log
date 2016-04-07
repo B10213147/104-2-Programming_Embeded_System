@@ -1,9 +1,0 @@
-CONVERTING	E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\rezultat.elf
-LOADING	E:\jernej\Predmeti\tadej-vgrajeniSistemi-modulB\vaje_new\Vaja1_softStart_gpioInit\project\rezultat.elf
-INITIALIZING	POD: ARM7   CPU: ARM7TDMI
-LOADING 	1508 bytes
-PROGRAMMING
-VERIFYING
-	FILE: rezultat  AREA: Physical
-	Verifying 05E4h locations from 0000h
-	Verify OK
