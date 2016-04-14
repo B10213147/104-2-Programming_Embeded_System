@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1426518372 source:i:\ex4_rtos\extint.c
+	"extint.h"
+
+1426518422 i:\ex4_rtos\extint.h
+	"gpio.h"
+
+1379543284 i:\ex4_rtos\gpio.h
+	"timer.h"
+	"vpbdiv.h"
+	"pll.h"
+
+1379543434 i:\ex4_rtos\timer.h
+	"gpio.h"
+
+1379543284 i:\ex4_rtos\vpbdiv.h
+
+1379543284 i:\ex4_rtos\pll.h
+
+1395245506 source:i:\ex4_rtos\gpio.c
+	"gpio.h"
+
