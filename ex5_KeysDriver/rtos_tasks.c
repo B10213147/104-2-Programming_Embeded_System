@@ -16,7 +16,7 @@ int sch_tab_size = sizeof(sch_tab);
 
 // empty task (dummy)
 void empty_task(){
-}                            
+}
 
 
 // LCD related stuff
@@ -24,7 +24,7 @@ char lcd_buff[33]="                                ";
 char *lcd_string=lcd_buff;
 void lcd_driver(){
 	int i, done=0;
-	lcd_write_comm(DDRAM | 0x00);  
+	lcd_write_comm(DDRAM | 0x00);
 	for(i = 0; i < 16; i++){
     if(lcd_string[i]=='\0')
       done=1;
@@ -40,13 +40,13 @@ void lcd_driver(){
     if(done)
       lcd_write_data(' ');
     else
-      lcd_write_data(lcd_string[i]);    
+      lcd_write_data(lcd_string[i]);
   }
 }
 
 //creat the FIFO
-char test_buff[BUFF_LEN];
-struct rtos_pipe testFifo = {0, 0, BUFF_LEN, test_buff};
+char keys_buff[BUFF_LEN];
+struct rtos_pipe KeysFifo = {0, 0, BUFF_LEN, keys_buff};
 void keys_driver(){
 	int key_state, key_last_state = 0;
 	char c;
@@ -57,34 +57,34 @@ void keys_driver(){
     //store in a buffer as '0'
     if(((key_state & T0) != 0) && ((key_last_state & T0) == 0)){
  		c = '0';
-		n = rtos_pipe_write(&testFifo, &c, 1);
+		n = rtos_pipe_write(&KeysFifo, &c, 1);
 		if(n == 1){
-			
-		} 
+
+		}
     }
     //store in a buffer as '1'
     if(((key_state & T1) != 0) && ((key_last_state & T1) == 0)){
         c = '1';
-		n = rtos_pipe_write(&testFifo, &c, 1);
+		n = rtos_pipe_write(&KeysFifo, &c, 1);
 		if(n == 1){
-			
-		} 
+
+		}
     }
     //store in a buffer as '2'
     if(((key_state & T2) != 0) && ((key_last_state & T2) == 0)){
         c = '2';
-		n = rtos_pipe_write(&testFifo, &c, 1);
+		n = rtos_pipe_write(&KeysFifo, &c, 1);
 		if(n == 1){
-			
-		} 
+
+		}
     }
     //store in a buffer as '3'
     if(((key_state & T3) != 0) && ((key_last_state & T3) == 0)){
         c = '3';
-		n = rtos_pipe_write(&testFifo, &c, 1);
+		n = rtos_pipe_write(&KeysFifo, &c, 1);
 		if(n == 1){
-			
-		} 
+
+		}
     }
 
     key_last_state = key_state;
@@ -93,15 +93,15 @@ void keys_driver(){
 void keys2lcd(){
     int items;
     char line[16];
-    
-	if(testFifo.end>testFifo.begin){
-		items = testFifo.size - testFifo.begin + testFifo.end;
+
+	if(KeysFifo.end>KeysFifo.begin){
+		items = KeysFifo.size - KeysFifo.begin + KeysFifo.end;
 	}
 	else{
-		items = testFifo.end - testFifo.begin;
+		items = KeysFifo.end - KeysFifo.begin;
 	}
 	clrscr();
-	rtos_pipe_read(&testFifo, &line, items);
+	rtos_pipe_read(&KeysFifo, &line, items);
 	str2lcd(0, line);
 }
 
@@ -112,38 +112,38 @@ int pulse_num = 0;
 void generator(){
 	int n;
     char c;
-	
+
 	if(buzy == 0){
-		n = rtos_pipe_read(&testFifo, &c, 1);
+		n = rtos_pipe_read(&KeysFifo, &c, 1);
 		switch(c){
 		case '0':
-			buzy = 1;	
+			buzy = 1;
 			pulse_num = 10;
 			break;
-			
+
 		case '1':
-			buzy = 1;	
+			buzy = 1;
 			pulse_num = 1;
 			break;
-			
+
 		case '2':
-			buzy = 1;	
+			buzy = 1;
 			pulse_num = 2;
 			break;
 
 		case '3':
-			buzy = 1;	
+			buzy = 1;
 			pulse_num = 3;
 			break;
-			
+
 		default:
-			buzy = 0;	
+			buzy = 0;
 			pulse_num = 0;
             cycle = 0;
-		}        
+		}
 	}
 	if(buzy == 1){	//buzy == 1
-		
+
         if(pulse_num>0){
     		cycle++;
             if(cycle>0 && cycle<=2){
@@ -154,13 +154,13 @@ void generator(){
     			set_pin_value(4, 0);
                 //cycle++;
     		}
-    		//finish one pulse 
-    		if(cycle>=5){	
+    		//finish one pulse
+    		if(cycle>=5){
     			cycle = 0;
-    			pulse_num--;	
+    			pulse_num--;
     		}
         }
-		
+
 		else{ //end of whole generate
            if(delay<=50){
 			    set_pin_value(4, 0);
@@ -170,11 +170,11 @@ void generator(){
 			    delay = 0;
 			    buzy = 0;
                 cycle = 0;
-		    } 
-        }         
-        
+		    }
+        }
+
 	}//end buzy
-	
+
 }
 
 void str2lcd(int position, char *str){
