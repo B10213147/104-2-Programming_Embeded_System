@@ -2,7 +2,7 @@
 #include "rtos_pipe.h"
 #include "gpio.h"
 
-#define BUFF_LEN 11
+#define BUFF_LEN 20
 
 void str2lcd(int position, char *str);
 void clrscr();
@@ -17,7 +17,6 @@ int sch_tab_size = sizeof(sch_tab);
 // empty task (dummy)
 void empty_task(){
 }
-
 
 // LCD related stuff
 char lcd_buff[33]="                                ";
@@ -46,9 +45,10 @@ void lcd_driver(){
 
 //creat the FIFO
 char keys_buff[BUFF_LEN];
-struct rtos_pipe KeysFifo = {0, 0, BUFF_LEN, keys_buff};
+struct rtos_pipe keysFifo = {0, 0, BUFF_LEN, keys_buff};
+int key_last_state = 0;
 void keys_driver(){
-	int key_state, key_last_state = 0;
+	int key_state;
 	char c;
 	int n;
 
@@ -57,7 +57,7 @@ void keys_driver(){
     //store in a buffer as '0'
     if(((key_state & T0) != 0) && ((key_last_state & T0) == 0)){
  		c = '0';
-		n = rtos_pipe_write(&KeysFifo, &c, 1);
+		n = rtos_pipe_write(&keysFifo, &c, 1);
 		if(n == 1){
 
 		}
@@ -65,7 +65,7 @@ void keys_driver(){
     //store in a buffer as '1'
     if(((key_state & T1) != 0) && ((key_last_state & T1) == 0)){
         c = '1';
-		n = rtos_pipe_write(&KeysFifo, &c, 1);
+		n = rtos_pipe_write(&keysFifo, &c, 1);
 		if(n == 1){
 
 		}
@@ -73,7 +73,7 @@ void keys_driver(){
     //store in a buffer as '2'
     if(((key_state & T2) != 0) && ((key_last_state & T2) == 0)){
         c = '2';
-		n = rtos_pipe_write(&KeysFifo, &c, 1);
+		n = rtos_pipe_write(&keysFifo, &c, 1);
 		if(n == 1){
 
 		}
@@ -81,7 +81,7 @@ void keys_driver(){
     //store in a buffer as '3'
     if(((key_state & T3) != 0) && ((key_last_state & T3) == 0)){
         c = '3';
-		n = rtos_pipe_write(&KeysFifo, &c, 1);
+		n = rtos_pipe_write(&keysFifo, &c, 1);
 		if(n == 1){
 
 		}
@@ -91,18 +91,17 @@ void keys_driver(){
 }
 
 void keys2lcd(){
-    int items;
-    char line[16];
+    int i;
+    char line[BUFF_LEN];
 
-	if(KeysFifo.end>KeysFifo.begin){
-		items = KeysFifo.size - KeysFifo.begin + KeysFifo.end;
-	}
-	else{
-		items = KeysFifo.end - KeysFifo.begin;
-	}
-	clrscr();
-	rtos_pipe_read(&KeysFifo, &line, items);
-	str2lcd(0, line);
+    for(i=0; (keysFifo.begin+i)%keysFifo.size != keysFifo.end; i++){
+      line[i] = keysFifo.data[(keysFifo.begin+i)%keysFifo.size];
+    }
+
+    clrscr();
+
+    line[i] = '\0';
+    str2lcd(0, line);
 }
 
 int buzy = 0;
@@ -114,9 +113,11 @@ void generator(){
     char c;
 
 	if(buzy == 0){
-		n = rtos_pipe_read(&KeysFifo, &c, 1);
+		n = rtos_pipe_read(&keysFifo, &c, 1);
+        if(n == 0) return;
+
 		switch(c){
-		case '0':
+        case '0':
 			buzy = 1;
 			pulse_num = 10;
 			break;
@@ -142,8 +143,8 @@ void generator(){
             cycle = 0;
 		}
 	}
-	if(buzy == 1){	//buzy == 1
 
+	if(buzy == 1){
         if(pulse_num>0){
     		cycle++;
             if(cycle>0 && cycle<=2){
@@ -160,7 +161,6 @@ void generator(){
     			pulse_num--;
     		}
         }
-
 		else{ //end of whole generate
            if(delay<=50){
 			    set_pin_value(4, 0);
@@ -172,9 +172,7 @@ void generator(){
                 cycle = 0;
 		    }
         }
-
 	}//end buzy
-
 }
 
 void str2lcd(int position, char *str){
@@ -187,12 +185,12 @@ void str2lcd(int position, char *str){
 }
 
 void clrscr(){
-  int i;
+    int i;
 
-  for(i=0; i<32; i++){
-    lcd_string[i] = ' ';
-  }
-  lcd_string[32] = '\0';
+    for(i=0; i<32; i++){
+        lcd_string[i] = ' ';
+    }
+    lcd_string[32] = '\0';
 }
 
 
