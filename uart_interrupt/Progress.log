@@ -1,0 +1,10 @@
+INITIALIZING	Emulator: iONE   Debugger: On-chip
+CONVERTING	Z:\vs\Harvard_Tseng\uart\interrupt\rezultat.elf
+LOADING	Z:\vs\Harvard_Tseng\uart\interrupt\rezultat.elf
+INITIALIZING	POD: ARM7   CPU: ARM7TDMI
+LOADING 	15148 bytes
+PROGRAMMING
+VERIFYING
+	FILE: rezultat  AREA: Physical
+	Verifying 3B2Ch locations from 0000h
+	Verify OK
