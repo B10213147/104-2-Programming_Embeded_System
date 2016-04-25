@@ -1,0 +1,9 @@
+CONVERTING	Z:\vs\Harvard_Tseng\uart\project\rezultat.elf
+LOADING	Z:\vs\Harvard_Tseng\uart\project\rezultat.elf
+INITIALIZING	POD: ARM7   CPU: ARM7TDMI
+LOADING 	14840 bytes
+PROGRAMMING
+VERIFYING
+	FILE: rezultat  AREA: Physical
+	Verifying 39F8h locations from 0000h
+	Verify OK
