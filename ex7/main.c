@@ -2,9 +2,7 @@
 #include "uart_driver.h"
 #include "lcd_driver.h"
 #include "rtos2.h"
-                                     
-extern void keys_driver();
-extern void lcd_driver();
+
 extern char *lcd_string;
 
 int main()

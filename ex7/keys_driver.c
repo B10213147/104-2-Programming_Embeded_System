@@ -2,8 +2,7 @@
 #include "rtos2.h"
 #include "gpio.h"
 
-int key_last_state = 0;     
-
+int key_last_state = 0;
 void keys_driver(){
 	int key_state;
 	char c;

@@ -1,7 +1,6 @@
 #include "uart_driver.h"
 #include "uart.h"
 
-int num = 0;
 void uart_driver(){
     char tx_data, rx_data;
 	char line_status = U1LSR;
@@ -11,25 +10,20 @@ void uart_driver(){
 	}
 	else{	//U1RBR contains valid data
 		if((line_status&rxfe) == 0){	//U1RBR contains no UART1 RX errors
-			data = U1RBR;
-			if(data == 27){
-              toggle = !toggle;
-            }
-            else{
-				if(toggle){	//send back to PC
-					U1THR = data;
-				}
-				else{	//display on LCD
-					lcd_string[i] = data;
-					lcd_string[i+1] = '\0';
-					i++;
-					lcd_driver();
-				}
-            }
+			rx_data = U1RBR;
+			rtos2pipe_write(uart_rx_pipe, &rx_data, 1);
 		}
 		else{	//UART1 RBR contains at least one UART1 RX error
 			U1RBR;
 		}
+	}
+	//U1THR and/or the U1TSR contains valid data
+	if((line_status&temt) == 0){
+
+	}
+	else{   //U1THR and the U1TSR are empty
+        rtos2pipe_read(uart_tx_pipe, &tx_data, 1);
+        U1THR = tx_data;
 	}
 
 
