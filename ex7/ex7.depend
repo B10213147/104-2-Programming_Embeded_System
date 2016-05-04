@@ -1,0 +1,55 @@
+# depslib dependency file v1.0
+1321887990 source:i:\ex7\gpio.c
+	"gpio.h"
+
+1318886182 i:\ex7\gpio.h
+	"timer.h"
+	"vpbdiv.h"
+	"pll.h"
+
+1349351744 i:\ex7\timer.h
+
+1190795388 i:\ex7\vpbdiv.h
+
+1204048536 i:\ex7\pll.h
+
+1318883164 source:i:\ex7\init.c
+	"init.h"
+
+1187789608 i:\ex7\init.h
+	"gpio.h"
+	"mam.h"
+
+1190795388 i:\ex7\mam.h
+
+1320452072 source:i:\ex7\interrupts_no_vic_reset.c
+	"vic.h"
+
+1192470634 i:\ex7\vic.h
+
+1462386513 source:i:\ex7\keys_driver.c
+	"keys_driver.h"
+	"rtos2.h"
+	"gpio.h"
+
+1462386401 i:\ex7\keys_driver.h
+
+1325450922 i:\ex7\rtos2.h
+
+1462382585 source:i:\ex7\lcd_driver.c
+	"lcd_driver.h"
+	"gpio.h"
+
+1462384178 i:\ex7\lcd_driver.h
+
+1462387640 source:i:\ex7\main.c
+	"keys_driver.h"
+	"uart_driver.h"
+	"lcd_driver.h"
+	"rtos2.h"
+
+1462387640 i:\ex7\uart_driver.h
+
+1190812556 source:i:\ex7\mam.c
+	"mam.h"
+
