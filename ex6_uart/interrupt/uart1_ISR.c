@@ -7,17 +7,17 @@ void str2lcd(int position, char *str);
 char toggle = 0;
 int num = 0;
 void uart1_ISR(){
-    char data;	
-	
+    char data;
+
 	char line_status = U1IIR;
-    
+
 	if((line_status&interrupt_pending) == 0){	//At least one interrupt is pending
 		switch(line_status&interrupt_id){
 		case rx_data_available_id:	// Receive Data Available
 			data = U1RBR;
-            
+
 			if(data == 27){
-			  toggle = !toggle;
+			  toggle = ~toggle;
 			}
 			else{
 				if(toggle){	//send back to PC
@@ -30,26 +30,26 @@ void uart1_ISR(){
 					lcd_driver();
 				}
 			}
-				
+
 			break;
-			
+
 		case character_time_out_id:	//Character Time-out Indicator
 			U1RBR;
 			break;
-				
+
 		default:
             break;
-		}		
+		}
 	}
 	else{	//No interrupt is pending
 	}
 
 	if(num == 32){
 		str2lcd(0, lcd_string+16);
-        str2lcd(16, "                ");		                  
-		num = 16;		
+        str2lcd(16, "                ");
+		num = 16;
 	}
-            
+
     VICVectAddr = 0;        //reset VIC priority circuit
 }
 
