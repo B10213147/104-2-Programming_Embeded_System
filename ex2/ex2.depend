@@ -1,36 +1,45 @@
 # depslib dependency file v1.0
-1458767568 source:i:\ex2\gpio.c
+1462468842 source:i:\ex2\gpio.c
 	"gpio.h"
 
-1458767573 i:\ex2\gpio.h
+1462468842 i:\ex2\gpio.h
 	"timer.h"
 	"vpbdiv.h"
 	"pll.h"
 
-1458768416 i:\ex2\timer.h
+1462468842 i:\ex2\timer.h
 
-1458767612 i:\ex2\vpbdiv.h
+1462468842 i:\ex2\vpbdiv.h
 
-1458767596 i:\ex2\pll.h
+1462468842 i:\ex2\pll.h
 
-1458767575 source:i:\ex2\init.c
+1462468842 source:i:\ex2\init.c
 	"init.h"
 
-1458767577 i:\ex2\init.h
+1462468842 i:\ex2\init.h
 	"gpio.h"
 	"mam.h"
 
-1458767592 i:\ex2\mam.h
+1462468842 i:\ex2\mam.h
 
-1458767581 source:i:\ex2\interrupts.c
+1462468842 source:i:\ex2\interrupts.c
 	"vic.h"
 
-1458767606 i:\ex2\vic.h
+1462468842 i:\ex2\vic.h
 
-1458767588 source:i:\ex2\main.c
+1462468842 source:i:\ex2\main.c
 	"gpio.h"
 	<string.h>
 
-1458767590 source:i:\ex2\mam.c
+1462468842 source:i:\ex2\mam.c
 	"mam.h"
+
+1462468842 source:i:\ex2\pll.c
+	"pll.h"
+
+1462468842 source:i:\ex2\timer.c
+	"timer.h"
+
+1462468842 source:i:\ex2\vpbdiv.c
+	"vpbdiv.h"
 
