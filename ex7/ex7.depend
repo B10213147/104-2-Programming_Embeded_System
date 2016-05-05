@@ -27,7 +27,7 @@
 
 1192470634 i:\ex7\vic.h
 
-1462386513 source:i:\ex7\keys_driver.c
+1462401261 source:i:\ex7\keys_driver.c
 	"keys_driver.h"
 	"rtos2.h"
 	"gpio.h"
@@ -48,7 +48,7 @@
 	"lcd_driver.h"
 	"rtos2.h"
 
-1462401062 i:\ex7\uart_driver.h
+1462438519 i:\ex7\uart_driver.h
 
 1190812556 source:i:\ex7\mam.c
 	"mam.h"
