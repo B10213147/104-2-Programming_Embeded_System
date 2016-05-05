@@ -30,7 +30,7 @@ void start_up()
     int handshake = 0;
 	int interrupts = 0;
     uart1_init(baud_rate, word_length, stop_bit, parity,
-        parity_type, handshake, interrupts);
+            parity_type, handshake, interrupts);
     U1TER |= txen;	//enable the transmitter
 
     rtos2init(system_memory, 500, 10000);
@@ -40,7 +40,7 @@ void start_up()
     uart_tx_pipe = rtos2pipe_create(10);
     uart_rx_pipe = rtos2pipe_create(10);
 
-    //enable_os();
+    enable_os();
 
     main();	// Start main program
     while(1);

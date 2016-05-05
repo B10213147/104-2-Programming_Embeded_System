@@ -42,7 +42,7 @@
 
 1462400612 i:\ex7\lcd_driver.h
 
-1462401120 source:i:\ex7\main.c
+1462468405 source:i:\ex7\main.c
 	"keys_driver.h"
 	"uart_driver.h"
 	"lcd_driver.h"
