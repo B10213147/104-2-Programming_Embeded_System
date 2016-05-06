@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="uart_polling" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/uart_polling" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/uart_polling" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="adc_dac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="adc_dac.h" />
+		<Unit filename="extint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="extint.h" />
+		<Unit filename="gpio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gpio.h" />
+		<Unit filename="i2c.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="i2c.h" />
+		<Unit filename="iap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="iap.h" />
+		<Unit filename="init.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="init.h" />
+		<Unit filename="init_no_lcd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="interrupts.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="interrupts_irq.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="interrupts_no_vic_reset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="io.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="io.h" />
+		<Unit filename="lcd_driver_1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mam.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mam.h" />
+		<Unit filename="pll.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pll.h" />
+		<Unit filename="pwm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pwm.h" />
+		<Unit filename="rtc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rtc.h" />
+		<Unit filename="rtos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rtos.h" />
+		<Unit filename="rtos2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rtos2.h" />
+		<Unit filename="rtos2mem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rtos2pipe.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rtos2sched.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rtos2task.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rtos_tasks.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rtos_tasks.h" />
+		<Unit filename="spi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="spi.h" />
+		<Unit filename="startup.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="timer.h" />
+		<Unit filename="uart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="uart.h" />
+		<Unit filename="vic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vic.h" />
+		<Unit filename="vpbdiv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vpbdiv.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

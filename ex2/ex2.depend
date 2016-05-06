@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1462468842 source:i:\ex2\gpio.c
+	"gpio.h"
+
+1462468842 i:\ex2\gpio.h
+	"timer.h"
+	"vpbdiv.h"
+	"pll.h"
+
+1462468842 i:\ex2\timer.h
+
+1462468842 i:\ex2\vpbdiv.h
+
+1462468842 i:\ex2\pll.h
+
+1462468842 source:i:\ex2\init.c
+	"init.h"
+
+1462468842 i:\ex2\init.h
+	"gpio.h"
+	"mam.h"
+
+1462468842 i:\ex2\mam.h
+
+1462468842 source:i:\ex2\interrupts.c
+	"vic.h"
+
+1462468842 i:\ex2\vic.h
+
+1462468842 source:i:\ex2\main.c
+	"gpio.h"
+	<string.h>
+
+1462468842 source:i:\ex2\mam.c
+	"mam.h"
+
+1462468842 source:i:\ex2\pll.c
+	"pll.h"
+
+1462468842 source:i:\ex2\timer.c
+	"timer.h"
+
+1462468842 source:i:\ex2\vpbdiv.c
+	"vpbdiv.h"
+
